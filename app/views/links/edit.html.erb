@@ -1,6 +1,8 @@
-<h1>Editing Link</h1>
+<h1>Editando Link</h1>
 
 <%= render 'form', link: @link %>
 
-<%= link_to 'Show', @link %> |
-<%= link_to 'Back', links_path %>
+<div class="form-group">
+	<%= link_to 'Mostrar', @link, class: "btn btn-default" %>
+	<%= link_to 'Atras', links_path, class: "btn btn-danger" %>
+</div>
