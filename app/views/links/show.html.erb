@@ -3,7 +3,7 @@
 		<a href="<%= @link.url %>"><%= @link.title %></a>
 		<br>
 		<small>
-			Submitted by <%= @link.user.email %>
+			Submitted by <%= @link.user.name %>
 		</small>
 	</h1>
 </div>
@@ -30,6 +30,17 @@
     <%= @link.get_downvotes.count %>
   <% end %>
 </div>
+<div class="link row clearfix">
+	<% if user_signed_in? %>
+		<%= simple_form_for [@link, Comment.new] do |f| %>
+			<div class="field">
+				<%= f.text_area :body, class: "form-control" %>
+			</div>
+			<br />
+			<%= f.submit "Añadir Comentario", class: "btn btn-primary" %>
+		<% end %>
+	<% end %>
+</div>
 
 <h3 class="comments_title">
 	<%= @link.comments.count %> Commentarios
@@ -38,10 +49,4 @@
 <div id="comments">
 	<%= render :partial => @link.comments %>
 </div>
-<%= simple_form_for [@link, Comment.new] do |f| %>
-	<div class="field">
-		<%= f.text_area :body, class: "form-control" %>
-	</div>
-	<br />
-	<%= f.submit "Añadir Comentario", class: "btn btn-primary" %>
-<% end %>
+
