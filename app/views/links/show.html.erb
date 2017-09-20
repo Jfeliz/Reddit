@@ -9,13 +9,24 @@
 </div>
 
 <div class="btn-group">
-	<%= link_to "Visitar URL", @link.url, class: "btn btn-primary" %>
+	<%= link_to "Visitar sitio", @link.url, class: "btn btn-success" %>
 </div>
-
 <% if @link.user == current_user %>
 	<div class="btn-group">
 		<%= link_to "Editar", edit_link_path(@link), class: "btn btn-default" %>
 		<%= link_to "Eliminar", @link, method: :delete, data: { confirm: "¿seguro O.O?"}, class: "btn btn-danger" %>
 	</div>
-
 <% end %>
+
+<div class="btn-group pull-right">
+	<%= link_to like_link_path(@link), method: :put, class: "btn btn-primary btn-sm" do %>
+    <spam class= "glyphicon glyphicon-chevron-up"></spam>
+    Me gusta
+    <%= @link.get_upvotes.count %>
+  <% end %>
+  <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-danger btn-sm" do %>
+    <spam class= "glyphicon glyphicon-chevron-up"></spam>
+    No me gusta
+    <%= @link.get_downvotes.count %>
+  <% end %>
+</div>

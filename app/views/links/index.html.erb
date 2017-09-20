@@ -5,5 +5,18 @@
       <small class="author">Submitted <%= time_ago_in_words(link.created_at) %> by <%= link.user.email %>
       </small>
     </h2>
+    <div class="btn.group">
+    	<a class="btn btn-success btn-sm" href="<%= link.url %>"> Visitar sitio</a>
+    	<%= link_to like_link_path(link), method: :put, class: "btn btn-primary btn-sm" do %>
+    		<spam class= "glyphicon glyphicon-chevron-up"></spam>
+    		Me gusta
+    		<%= link.get_upvotes.count %>
+    	<% end %>
+    	<%= link_to dislike_link_path(link), method: :put, class: "btn btn-danger btn-sm" do %>
+    		<spam class= "glyphicon glyphicon-chevron-down"></spam>
+    		No me gusta
+    		<%= link.get_downvotes.count %>
+    	<% end %>
+    </div>
   </div>
 <% end %>
